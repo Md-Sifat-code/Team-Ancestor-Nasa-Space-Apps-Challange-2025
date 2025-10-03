@@ -361,171 +361,172 @@ const SolutionSection = () => {
                 </svg>
               </button>
 
-              {/* Modal */}
-              {activeModal === index && (
-                <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
-                  {/* Backdrop */}
-                  <div
-                    className="absolute inset-0 bg-black/50 backdrop-blur-sm z-[100000]"
-                    onClick={() => setActiveModal(null)}
-                  ></div>
-
-                  {/* Modal Content */}
-                  <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95 z-[100001]">
-                    {/* Close Button */}
-                    <button
-                      onClick={() => setActiveModal(null)}
-                      className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-[100002]"
-                    >
-                      ×
-                    </button>
-
-                    <div className="text-center mb-4">
-                      <div className="text-3xl mb-2">{step.icon}</div>
-                      <h4 className="text-lg font-bold text-green-400 mb-2">
-                        {step.detailedInfo.header}
-                      </h4>
-                    </div>
-
-                    <div className="text-sm text-gray-300 space-y-3">
-                      <p className="leading-relaxed">
-                        {step.detailedInfo.description}
-                      </p>
-
-                      {step.detailedInfo.process && (
-                        <div>
-                          <p className="font-semibold text-white mb-2">
-                            {step.detailedInfo.process}
-                          </p>
-
-                          {/* Handle different data structures */}
-                          {step.detailedInfo.streams && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.streams.map((stream, i) => (
-                                <li key={i}>{stream}</li>
-                              ))}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.steps && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.steps.map((s, i) => (
-                                <li key={i}>{s}</li>
-                              ))}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.stages && (
-                            <ul className="list-disc list-inside space-y-2 ml-4">
-                              {step.detailedInfo.stages.map((stage, i) => (
-                                <li key={i}>
-                                  {typeof stage === "string" ? (
-                                    stage
-                                  ) : (
-                                    <div>
-                                      <div className="font-semibold text-white">
-                                        {stage.title}
-                                      </div>
-                                      <div className="ml-2">
-                                        {stage.details}
-                                      </div>
-                                    </div>
-                                  )}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.factors && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.factors.map(
-                                (factor: string, i: number) => (
-                                  <li key={i}>{factor}</li>
-                                )
-                              )}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.types && (
-                            <ul className="list-disc list-inside space-y-2 ml-4">
-                              {step.detailedInfo.types.map((type, i) => (
-                                <li key={i}>
-                                  <div className="font-semibold text-white">
-                                    {type.title}
-                                  </div>
-                                  <div className="ml-2">{type.details}</div>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.processes && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.processes.map(
-                                (process: string, i: number) => (
-                                  <li key={i}>{process}</li>
-                                )
-                              )}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.uses && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.uses.map(
-                                (use: string, i: number) => (
-                                  <li key={i}>{use}</li>
-                                )
-                              )}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.features && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.features.map((feature, i) => (
-                                <li key={i}>{feature}</li>
-                              ))}
-                            </ul>
-                          )}
-
-                          {step.detailedInfo.process &&
-                            step.detailedInfo.process.includes("\n") && (
-                              <pre className="whitespace-pre-wrap bg-slate-800/50 p-3 rounded text-xs">
-                                {step.detailedInfo.process}
-                              </pre>
-                            )}
-                        </div>
-                      )}
-
-                      {step.detailedInfo.note && (
-                        <div className="bg-green-900/20 border border-green-500/30 rounded p-3 mt-3">
-                          <p className="font-semibold text-green-400">
-                            {step.detailedInfo.note}
-                          </p>
-                        </div>
-                      )}
-
-                      {step.detailedInfo.specs &&
-                        step.detailedInfo.specs.length > 0 && (
-                          <div className="mt-3">
-                            <div className="flex flex-wrap gap-2">
-                              {step.detailedInfo.specs.map((spec, i) => (
-                                <span
-                                  key={i}
-                                  className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs"
-                                >
-                                  {spec}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>
+
+        {/* Modal - Rendered at section level */}
+        {activeModal !== null && (
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm z-[100000]"
+              onClick={() => setActiveModal(null)}
+            ></div>
+
+            {/* Modal Content */}
+            <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95 z-[100001]">
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveModal(null)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-[100002]"
+              >
+                ×
+              </button>
+
+              <div className="text-center mb-4">
+                <div className="text-3xl mb-2">{processSteps[activeModal].icon}</div>
+                <h4 className="text-lg font-bold text-green-400 mb-2">
+                  {processSteps[activeModal].detailedInfo.header}
+                </h4>
+              </div>
+
+              <div className="text-sm text-gray-300 space-y-3">
+                <p className="leading-relaxed">
+                  {processSteps[activeModal].detailedInfo.description}
+                </p>
+
+                {processSteps[activeModal].detailedInfo.process && (
+                  <div>
+                    <p className="font-semibold text-white mb-2">
+                      {processSteps[activeModal].detailedInfo.process}
+                    </p>
+
+                    {/* Handle different data structures */}
+                    {processSteps[activeModal].detailedInfo.streams && (
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        {processSteps[activeModal].detailedInfo.streams.map((stream, i) => (
+                          <li key={i}>{stream}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.steps && (
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        {processSteps[activeModal].detailedInfo.steps.map((s, i) => (
+                          <li key={i}>{s}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.stages && (
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        {processSteps[activeModal].detailedInfo.stages.map((stage, i) => (
+                          <li key={i}>
+                            {typeof stage === "string" ? (
+                              stage
+                            ) : (
+                              <div>
+                                <div className="font-semibold text-white">
+                                  {stage.title}
+                                </div>
+                                <div className="ml-2">
+                                  {stage.details}
+                                </div>
+                              </div>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.factors && (
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        {processSteps[activeModal].detailedInfo.factors.map(
+                          (factor: string, i: number) => (
+                            <li key={i}>{factor}</li>
+                          )
+                        )}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.types && (
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        {processSteps[activeModal].detailedInfo.types.map((type, i) => (
+                          <li key={i}>
+                            <div className="font-semibold text-white">
+                              {type.title}
+                            </div>
+                            <div className="ml-2">{type.details}</div>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.processes && (
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        {processSteps[activeModal].detailedInfo.processes.map(
+                          (process: string, i: number) => (
+                            <li key={i}>{process}</li>
+                          )
+                        )}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.uses && (
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        {processSteps[activeModal].detailedInfo.uses.map(
+                          (use: string, i: number) => (
+                            <li key={i}>{use}</li>
+                          )
+                        )}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.features && (
+                      <ul className="list-disc list-inside space-y-1 ml-4">
+                        {processSteps[activeModal].detailedInfo.features.map((feature, i) => (
+                          <li key={i}>{feature}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {processSteps[activeModal].detailedInfo.process &&
+                      processSteps[activeModal].detailedInfo.process.includes("\n") && (
+                        <pre className="whitespace-pre-wrap bg-slate-800/50 p-3 rounded text-xs">
+                          {processSteps[activeModal].detailedInfo.process}
+                        </pre>
+                      )}
+                  </div>
+                )}
+
+                {processSteps[activeModal].detailedInfo.note && (
+                  <div className="bg-green-900/20 border border-green-500/30 rounded p-3 mt-3">
+                    <p className="font-semibold text-green-400">
+                      {processSteps[activeModal].detailedInfo.note}
+                    </p>
+                  </div>
+                )}
+
+                {processSteps[activeModal].detailedInfo.specs &&
+                  processSteps[activeModal].detailedInfo.specs.length > 0 && (
+                    <div className="mt-3">
+                      <div className="flex flex-wrap gap-2">
+                        {processSteps[activeModal].detailedInfo.specs.map((spec, i) => (
+                          <span
+                            key={i}
+                            className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs"
+                          >
+                            {spec}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Key Technologies */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
