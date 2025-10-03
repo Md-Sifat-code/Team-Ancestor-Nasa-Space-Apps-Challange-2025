@@ -318,14 +318,14 @@ const SolutionSection = () => {
         </div>
 
         {/* Process Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch">
           {processSteps.map((step, index) => (
             <div
               key={index}
-              className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 group relative"
+              className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 group relative flex flex-col h-full"
             >
-              <div className="flex items-center mb-4">
-                <div className="text-2xl mr-3">{step.icon}</div>
+              <div className="flex items-center mb-4 min-h-[2.5rem]">
+                <div className="text-2xl mr-3 w-8 h-8 flex items-center justify-center">{step.icon}</div>
                 <div className="text-sm font-bold text-green-400 bg-green-500/20 px-2 py-1 rounded">
                   STEP {step.step}
                 </div>
@@ -333,7 +333,7 @@ const SolutionSection = () => {
               <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-green-400 transition-colors">
                 {step.title}
               </h3>
-              <p className="text-gray-300 leading-relaxed mb-4">
+              <p className="text-gray-300 leading-relaxed mb-4 flex-grow">
                 {step.description}
               </p>
 
@@ -343,7 +343,7 @@ const SolutionSection = () => {
                   e.stopPropagation();
                   setActiveModal(index);
                 }}
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 mt-auto"
               >
                 <span>Read More</span>
                 <svg
@@ -360,7 +360,6 @@ const SolutionSection = () => {
                   />
                 </svg>
               </button>
-
             </div>
           ))}
         </div>
@@ -385,7 +384,9 @@ const SolutionSection = () => {
               </button>
 
               <div className="text-center mb-4">
-                <div className="text-3xl mb-2">{processSteps[activeModal].icon}</div>
+                <div className="text-3xl mb-2">
+                  {processSteps[activeModal].icon}
+                </div>
                 <h4 className="text-lg font-bold text-green-400 mb-2">
                   {processSteps[activeModal].detailedInfo.header}
                 </h4>
@@ -405,38 +406,42 @@ const SolutionSection = () => {
                     {/* Handle different data structures */}
                     {processSteps[activeModal].detailedInfo.streams && (
                       <ul className="list-disc list-inside space-y-1 ml-4">
-                        {processSteps[activeModal].detailedInfo.streams.map((stream, i) => (
-                          <li key={i}>{stream}</li>
-                        ))}
+                        {processSteps[activeModal].detailedInfo.streams.map(
+                          (stream, i) => (
+                            <li key={i}>{stream}</li>
+                          )
+                        )}
                       </ul>
                     )}
 
                     {processSteps[activeModal].detailedInfo.steps && (
                       <ul className="list-disc list-inside space-y-1 ml-4">
-                        {processSteps[activeModal].detailedInfo.steps.map((s, i) => (
-                          <li key={i}>{s}</li>
-                        ))}
+                        {processSteps[activeModal].detailedInfo.steps.map(
+                          (s, i) => (
+                            <li key={i}>{s}</li>
+                          )
+                        )}
                       </ul>
                     )}
 
                     {processSteps[activeModal].detailedInfo.stages && (
                       <ul className="list-disc list-inside space-y-2 ml-4">
-                        {processSteps[activeModal].detailedInfo.stages.map((stage, i) => (
-                          <li key={i}>
-                            {typeof stage === "string" ? (
-                              stage
-                            ) : (
-                              <div>
-                                <div className="font-semibold text-white">
-                                  {stage.title}
+                        {processSteps[activeModal].detailedInfo.stages.map(
+                          (stage, i) => (
+                            <li key={i}>
+                              {typeof stage === "string" ? (
+                                stage
+                              ) : (
+                                <div>
+                                  <div className="font-semibold text-white">
+                                    {stage.title}
+                                  </div>
+                                  <div className="ml-2">{stage.details}</div>
                                 </div>
-                                <div className="ml-2">
-                                  {stage.details}
-                                </div>
-                              </div>
-                            )}
-                          </li>
-                        ))}
+                              )}
+                            </li>
+                          )
+                        )}
                       </ul>
                     )}
 
@@ -452,14 +457,16 @@ const SolutionSection = () => {
 
                     {processSteps[activeModal].detailedInfo.types && (
                       <ul className="list-disc list-inside space-y-2 ml-4">
-                        {processSteps[activeModal].detailedInfo.types.map((type, i) => (
-                          <li key={i}>
-                            <div className="font-semibold text-white">
-                              {type.title}
-                            </div>
-                            <div className="ml-2">{type.details}</div>
-                          </li>
-                        ))}
+                        {processSteps[activeModal].detailedInfo.types.map(
+                          (type, i) => (
+                            <li key={i}>
+                              <div className="font-semibold text-white">
+                                {type.title}
+                              </div>
+                              <div className="ml-2">{type.details}</div>
+                            </li>
+                          )
+                        )}
                       </ul>
                     )}
 
@@ -485,14 +492,18 @@ const SolutionSection = () => {
 
                     {processSteps[activeModal].detailedInfo.features && (
                       <ul className="list-disc list-inside space-y-1 ml-4">
-                        {processSteps[activeModal].detailedInfo.features.map((feature, i) => (
-                          <li key={i}>{feature}</li>
-                        ))}
+                        {processSteps[activeModal].detailedInfo.features.map(
+                          (feature, i) => (
+                            <li key={i}>{feature}</li>
+                          )
+                        )}
                       </ul>
                     )}
 
                     {processSteps[activeModal].detailedInfo.process &&
-                      processSteps[activeModal].detailedInfo.process.includes("\n") && (
+                      processSteps[activeModal].detailedInfo.process.includes(
+                        "\n"
+                      ) && (
                         <pre className="whitespace-pre-wrap bg-slate-800/50 p-3 rounded text-xs">
                           {processSteps[activeModal].detailedInfo.process}
                         </pre>
@@ -512,14 +523,16 @@ const SolutionSection = () => {
                   processSteps[activeModal].detailedInfo.specs.length > 0 && (
                     <div className="mt-3">
                       <div className="flex flex-wrap gap-2">
-                        {processSteps[activeModal].detailedInfo.specs.map((spec, i) => (
-                          <span
-                            key={i}
-                            className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs"
-                          >
-                            {spec}
-                          </span>
-                        ))}
+                        {processSteps[activeModal].detailedInfo.specs.map(
+                          (spec, i) => (
+                            <span
+                              key={i}
+                              className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs"
+                            >
+                              {spec}
+                            </span>
+                          )
+                        )}
                       </div>
                     </div>
                   )}
