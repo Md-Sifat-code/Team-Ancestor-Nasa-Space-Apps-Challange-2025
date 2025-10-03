@@ -280,15 +280,14 @@ const SolutionSection = () => {
           </div>
         </div>
 
-        {/* Process Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {processSteps.map((step, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 group cursor-pointer relative"
-              onMouseEnter={() => setActiveModal(index)}
-              onMouseLeave={() => setActiveModal(null)}
-            >
+            {/* Process Steps */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {processSteps.map((step, index) => (
+                <div
+                  key={index}
+                  className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 group cursor-pointer relative"
+                  onClick={() => setActiveModal(index)}
+                >
               <div className="flex items-center mb-4">
                 <div className="text-2xl mr-3">{step.icon}</div>
                 <div className="text-sm font-bold text-green-400 bg-green-500/20 px-2 py-1 rounded">
@@ -302,15 +301,31 @@ const SolutionSection = () => {
                 {step.description}
               </p>
               
-              {/* Modal */}
-              {activeModal === index && (
-                <div className="absolute top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-96 overflow-y-auto">
-                  <div className="text-center mb-4">
-                    <div className="text-3xl mb-2">{step.icon}</div>
-                    <h4 className="text-lg font-bold text-green-400 mb-2">
-                      {step.detailedInfo.header}
-                    </h4>
-                  </div>
+                  {/* Modal */}
+                  {activeModal === index && (
+                    <>
+                      {/* Backdrop */}
+                      <div 
+                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                        onClick={() => setActiveModal(null)}
+                      ></div>
+                      
+                      {/* Modal Content */}
+                      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[80vh] w-[90vw] max-w-2xl overflow-y-auto">
+                        {/* Close Button */}
+                        <button
+                          onClick={() => setActiveModal(null)}
+                          className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold"
+                        >
+                          ×
+                        </button>
+                        
+                        <div className="text-center mb-4">
+                          <div className="text-3xl mb-2">{step.icon}</div>
+                          <h4 className="text-lg font-bold text-green-400 mb-2">
+                            {step.detailedInfo.header}
+                          </h4>
+                        </div>
                   
                   <div className="text-sm text-gray-300 space-y-3">
                     <p className="leading-relaxed">{step.detailedInfo.description}</p>
@@ -419,10 +434,11 @@ const SolutionSection = () => {
                         </div>
                       </div>
                     )}
-                  </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
-              )}
-            </div>
           ))}
         </div>
 
