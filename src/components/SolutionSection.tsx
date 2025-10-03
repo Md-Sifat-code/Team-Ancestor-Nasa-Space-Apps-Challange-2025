@@ -363,19 +363,19 @@ const SolutionSection = () => {
 
               {/* Modal */}
               {activeModal === index && (
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4">
                   {/* Backdrop */}
                   <div
-                    className="absolute inset-0 bg-black/50 backdrop-blur-sm z-[10000]"
+                    className="absolute inset-0 bg-black/50 backdrop-blur-sm z-[100000]"
                     onClick={() => setActiveModal(null)}
                   ></div>
 
                   {/* Modal Content */}
-                  <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95 z-[10001]">
+                  <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95 z-[100001]">
                     {/* Close Button */}
                     <button
                       onClick={() => setActiveModal(null)}
-                      className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-[10002]"
+                      className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-[100002]"
                     >
                       ×
                     </button>
