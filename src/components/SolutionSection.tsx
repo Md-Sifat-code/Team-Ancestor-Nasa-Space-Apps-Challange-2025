@@ -2,10 +2,34 @@
 
 import { useState } from "react";
 
+interface DetailedInfo {
+  header: string;
+  description: string;
+  process?: string;
+  streams?: string[];
+  steps?: string[];
+  stages?: (string | { title: string; details: string })[];
+  factors?: string[];
+  types?: { title: string; details: string }[];
+  processes?: string[];
+  uses?: string[];
+  features?: string[];
+  note?: string;
+  specs?: string[];
+}
+
+interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+  icon: string;
+  detailedInfo: DetailedInfo;
+}
+
 const SolutionSection = () => {
   const [activeModal, setActiveModal] = useState<number | null>(null);
 
-  const processSteps = [
+  const processSteps: ProcessStep[] = [
     {
       step: "01",
       title: "Waste Collection & Sorting",
@@ -323,8 +347,9 @@ const SolutionSection = () => {
                     onClick={() => setActiveModal(null)}
                   ></div>
 
-                  {/* Modal Content */}
-                  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[80vh] w-[90vw] max-w-2xl overflow-y-auto">
+                   {/* Modal Content */}
+                   <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                     <div className="bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[80vh] w-full max-w-2xl overflow-y-auto relative transform transition-all duration-300 ease-out animate-in fade-in-0 zoom-in-95">
                     {/* Close Button */}
                     <button
                       onClick={() => setActiveModal(null)}
@@ -389,13 +414,13 @@ const SolutionSection = () => {
                             </ul>
                           )}
 
-                          {step.detailedInfo.factors && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.factors.map((factor, i) => (
-                                <li key={i}>{factor}</li>
-                              ))}
-                            </ul>
-                          )}
+                           {step.detailedInfo.factors && (
+                             <ul className="list-disc list-inside space-y-1 ml-4">
+                               {step.detailedInfo.factors.map((factor: string, i: number) => (
+                                 <li key={i}>{factor}</li>
+                               ))}
+                             </ul>
+                           )}
 
                           {step.detailedInfo.types && (
                             <ul className="list-disc list-inside space-y-2 ml-4">
@@ -410,17 +435,17 @@ const SolutionSection = () => {
                             </ul>
                           )}
 
-                          {step.detailedInfo.processes && (
-                            <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.processes.map((process, i) => (
-                                <li key={i}>{process}</li>
-                              ))}
-                            </ul>
-                          )}
+                           {step.detailedInfo.processes && (
+                             <ul className="list-disc list-inside space-y-1 ml-4">
+                               {step.detailedInfo.processes.map((process: string, i: number) => (
+                                 <li key={i}>{process}</li>
+                               ))}
+                             </ul>
+                           )}
 
                           {step.detailedInfo.uses && (
                             <ul className="list-disc list-inside space-y-1 ml-4">
-                              {step.detailedInfo.uses.map((use, i) => (
+                              {step.detailedInfo.uses.map((use: string, i: number) => (
                                 <li key={i}>{use}</li>
                               ))}
                             </ul>
@@ -466,11 +491,12 @@ const SolutionSection = () => {
                             </div>
                           </div>
                         )}
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
+                     </div>
+                   </div>
+                   </div>
+                 </>
+               )}
+             </div>
           ))}
         </div>
 
