@@ -325,7 +325,9 @@ const SolutionSection = () => {
               className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 group relative flex flex-col h-full"
             >
               <div className="flex items-center mb-4 min-h-[2.5rem]">
-                <div className="text-2xl mr-3 w-8 h-8 flex items-center justify-center">{step.icon}</div>
+                <div className="text-2xl mr-3 w-8 h-8 flex items-center justify-center">
+                  {step.icon}
+                </div>
                 <div className="text-sm font-bold text-green-400 bg-green-500/20 px-2 py-1 rounded">
                   STEP {step.step}
                 </div>
