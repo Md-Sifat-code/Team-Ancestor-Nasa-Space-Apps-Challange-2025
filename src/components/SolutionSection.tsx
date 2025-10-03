@@ -363,169 +363,167 @@ const SolutionSection = () => {
 
               {/* Modal */}
               {activeModal === index && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
                   {/* Backdrop */}
                   <div
-                    className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                    className="absolute inset-0 bg-black/50 backdrop-blur-sm z-[10000]"
                     onClick={() => setActiveModal(null)}
                   ></div>
 
                   {/* Modal Content */}
-                  <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95">
-                      {/* Close Button */}
-                      <button
-                        onClick={() => setActiveModal(null)}
-                        className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold"
-                      >
-                        ×
-                      </button>
+                  <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95 z-[10001]">
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setActiveModal(null)}
+                      className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-[10002]"
+                    >
+                      ×
+                    </button>
 
-                      <div className="text-center mb-4">
-                        <div className="text-3xl mb-2">{step.icon}</div>
-                        <h4 className="text-lg font-bold text-green-400 mb-2">
-                          {step.detailedInfo.header}
-                        </h4>
-                      </div>
+                    <div className="text-center mb-4">
+                      <div className="text-3xl mb-2">{step.icon}</div>
+                      <h4 className="text-lg font-bold text-green-400 mb-2">
+                        {step.detailedInfo.header}
+                      </h4>
+                    </div>
 
-                      <div className="text-sm text-gray-300 space-y-3">
-                        <p className="leading-relaxed">
-                          {step.detailedInfo.description}
-                        </p>
+                    <div className="text-sm text-gray-300 space-y-3">
+                      <p className="leading-relaxed">
+                        {step.detailedInfo.description}
+                      </p>
 
-                        {step.detailedInfo.process && (
-                          <div>
-                            <p className="font-semibold text-white mb-2">
-                              {step.detailedInfo.process}
-                            </p>
+                      {step.detailedInfo.process && (
+                        <div>
+                          <p className="font-semibold text-white mb-2">
+                            {step.detailedInfo.process}
+                          </p>
 
-                            {/* Handle different data structures */}
-                            {step.detailedInfo.streams && (
-                              <ul className="list-disc list-inside space-y-1 ml-4">
-                                {step.detailedInfo.streams.map((stream, i) => (
-                                  <li key={i}>{stream}</li>
-                                ))}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.steps && (
-                              <ul className="list-disc list-inside space-y-1 ml-4">
-                                {step.detailedInfo.steps.map((s, i) => (
-                                  <li key={i}>{s}</li>
-                                ))}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.stages && (
-                              <ul className="list-disc list-inside space-y-2 ml-4">
-                                {step.detailedInfo.stages.map((stage, i) => (
-                                  <li key={i}>
-                                    {typeof stage === "string" ? (
-                                      stage
-                                    ) : (
-                                      <div>
-                                        <div className="font-semibold text-white">
-                                          {stage.title}
-                                        </div>
-                                        <div className="ml-2">
-                                          {stage.details}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.factors && (
-                              <ul className="list-disc list-inside space-y-1 ml-4">
-                                {step.detailedInfo.factors.map(
-                                  (factor: string, i: number) => (
-                                    <li key={i}>{factor}</li>
-                                  )
-                                )}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.types && (
-                              <ul className="list-disc list-inside space-y-2 ml-4">
-                                {step.detailedInfo.types.map((type, i) => (
-                                  <li key={i}>
-                                    <div className="font-semibold text-white">
-                                      {type.title}
-                                    </div>
-                                    <div className="ml-2">{type.details}</div>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.processes && (
-                              <ul className="list-disc list-inside space-y-1 ml-4">
-                                {step.detailedInfo.processes.map(
-                                  (process: string, i: number) => (
-                                    <li key={i}>{process}</li>
-                                  )
-                                )}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.uses && (
-                              <ul className="list-disc list-inside space-y-1 ml-4">
-                                {step.detailedInfo.uses.map(
-                                  (use: string, i: number) => (
-                                    <li key={i}>{use}</li>
-                                  )
-                                )}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.features && (
-                              <ul className="list-disc list-inside space-y-1 ml-4">
-                                {step.detailedInfo.features.map(
-                                  (feature, i) => (
-                                    <li key={i}>{feature}</li>
-                                  )
-                                )}
-                              </ul>
-                            )}
-
-                            {step.detailedInfo.process &&
-                              step.detailedInfo.process.includes("\n") && (
-                                <pre className="whitespace-pre-wrap bg-slate-800/50 p-3 rounded text-xs">
-                                  {step.detailedInfo.process}
-                                </pre>
-                              )}
-                          </div>
-                        )}
-
-                        {step.detailedInfo.note && (
-                          <div className="bg-green-900/20 border border-green-500/30 rounded p-3 mt-3">
-                            <p className="font-semibold text-green-400">
-                              {step.detailedInfo.note}
-                            </p>
-                          </div>
-                        )}
-
-                        {step.detailedInfo.specs &&
-                          step.detailedInfo.specs.length > 0 && (
-                            <div className="mt-3">
-                              <div className="flex flex-wrap gap-2">
-                                {step.detailedInfo.specs.map((spec, i) => (
-                                  <span
-                                    key={i}
-                                    className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs"
-                                  >
-                                    {spec}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
+                          {/* Handle different data structures */}
+                          {step.detailedInfo.streams && (
+                            <ul className="list-disc list-inside space-y-1 ml-4">
+                              {step.detailedInfo.streams.map((stream, i) => (
+                                <li key={i}>{stream}</li>
+                              ))}
+                            </ul>
                           )}
-                     </div>
-                   </div>
+
+                          {step.detailedInfo.steps && (
+                            <ul className="list-disc list-inside space-y-1 ml-4">
+                              {step.detailedInfo.steps.map((s, i) => (
+                                <li key={i}>{s}</li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.stages && (
+                            <ul className="list-disc list-inside space-y-2 ml-4">
+                              {step.detailedInfo.stages.map((stage, i) => (
+                                <li key={i}>
+                                  {typeof stage === "string" ? (
+                                    stage
+                                  ) : (
+                                    <div>
+                                      <div className="font-semibold text-white">
+                                        {stage.title}
+                                      </div>
+                                      <div className="ml-2">
+                                        {stage.details}
+                                      </div>
+                                    </div>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.factors && (
+                            <ul className="list-disc list-inside space-y-1 ml-4">
+                              {step.detailedInfo.factors.map(
+                                (factor: string, i: number) => (
+                                  <li key={i}>{factor}</li>
+                                )
+                              )}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.types && (
+                            <ul className="list-disc list-inside space-y-2 ml-4">
+                              {step.detailedInfo.types.map((type, i) => (
+                                <li key={i}>
+                                  <div className="font-semibold text-white">
+                                    {type.title}
+                                  </div>
+                                  <div className="ml-2">{type.details}</div>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.processes && (
+                            <ul className="list-disc list-inside space-y-1 ml-4">
+                              {step.detailedInfo.processes.map(
+                                (process: string, i: number) => (
+                                  <li key={i}>{process}</li>
+                                )
+                              )}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.uses && (
+                            <ul className="list-disc list-inside space-y-1 ml-4">
+                              {step.detailedInfo.uses.map(
+                                (use: string, i: number) => (
+                                  <li key={i}>{use}</li>
+                                )
+                              )}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.features && (
+                            <ul className="list-disc list-inside space-y-1 ml-4">
+                              {step.detailedInfo.features.map((feature, i) => (
+                                <li key={i}>{feature}</li>
+                              ))}
+                            </ul>
+                          )}
+
+                          {step.detailedInfo.process &&
+                            step.detailedInfo.process.includes("\n") && (
+                              <pre className="whitespace-pre-wrap bg-slate-800/50 p-3 rounded text-xs">
+                                {step.detailedInfo.process}
+                              </pre>
+                            )}
+                        </div>
+                      )}
+
+                      {step.detailedInfo.note && (
+                        <div className="bg-green-900/20 border border-green-500/30 rounded p-3 mt-3">
+                          <p className="font-semibold text-green-400">
+                            {step.detailedInfo.note}
+                          </p>
+                        </div>
+                      )}
+
+                      {step.detailedInfo.specs &&
+                        step.detailedInfo.specs.length > 0 && (
+                          <div className="mt-3">
+                            <div className="flex flex-wrap gap-2">
+                              {step.detailedInfo.specs.map((spec, i) => (
+                                <span
+                                  key={i}
+                                  className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs"
+                                >
+                                  {spec}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                    </div>
+                  </div>
                 </div>
-               )}
-             </div>
+              )}
+            </div>
           ))}
         </div>
 
