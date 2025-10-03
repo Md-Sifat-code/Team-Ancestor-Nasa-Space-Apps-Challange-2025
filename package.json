@@ -1,12 +1,27 @@
 {
   "name": "team-ancestor-nasa-space-apps-challange-2025",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "The Nature Capsule - A Closed-Loop Bioregenerative Life Support System for Mars",
   "private": true,
+  "keywords": [
+    "mars",
+    "space",
+    "sustainability",
+    "life-support",
+    "bioregenerative",
+    "closed-loop",
+    "nasa",
+    "space-apps",
+    "jezero-crater"
+  ],
+  "author": "Team Ancestor - NASA Space Apps Challenge 2025",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.14",
@@ -24,5 +39,13 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "typescript": "^5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/team-ancestor-nasa-space-apps-challange-2025.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/team-ancestor-nasa-space-apps-challange-2025/issues"
+  },
+  "homepage": "https://github.com/your-username/team-ancestor-nasa-space-apps-challange-2025#readme"
 }
