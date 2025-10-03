@@ -324,45 +324,54 @@ const SolutionSection = () => {
               key={index}
               className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 group relative"
             >
-               <div className="flex items-center mb-4">
-                 <div className="text-2xl mr-3">{step.icon}</div>
-                 <div className="text-sm font-bold text-green-400 bg-green-500/20 px-2 py-1 rounded">
-                   STEP {step.step}
-                 </div>
-               </div>
-               <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-green-400 transition-colors">
-                 {step.title}
-               </h3>
-               <p className="text-gray-300 leading-relaxed mb-4">
-                 {step.description}
-               </p>
-               
-               {/* Read More Button */}
-               <button
-                 onClick={(e) => {
-                   e.stopPropagation();
-                   setActiveModal(index);
-                 }}
-                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
-               >
-                 <span>Read More</span>
-                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                 </svg>
-               </button>
+              <div className="flex items-center mb-4">
+                <div className="text-2xl mr-3">{step.icon}</div>
+                <div className="text-sm font-bold text-green-400 bg-green-500/20 px-2 py-1 rounded">
+                  STEP {step.step}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-green-400 transition-colors">
+                {step.title}
+              </h3>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                {step.description}
+              </p>
+
+              {/* Read More Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveModal(index);
+                }}
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
+              >
+                <span>Read More</span>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </button>
 
               {/* Modal */}
               {activeModal === index && (
-                <>
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                   {/* Backdrop */}
                   <div
-                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                    className="absolute inset-0 bg-black/50 backdrop-blur-sm"
                     onClick={() => setActiveModal(null)}
                   ></div>
 
                   {/* Modal Content */}
-                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[80vh] w-full max-w-2xl overflow-y-auto relative transform transition-all duration-300 ease-out animate-in fade-in-0 zoom-in-95">
+                  <div className="relative bg-slate-900/95 backdrop-blur-sm rounded-xl p-6 border border-green-500/40 shadow-2xl max-h-[90vh] w-full max-w-3xl overflow-y-auto transform transition-all duration-300 ease-out scale-100 animate-in fade-in-0 zoom-in-95">
                       {/* Close Button */}
                       <button
                         onClick={() => setActiveModal(null)}
@@ -512,12 +521,11 @@ const SolutionSection = () => {
                               </div>
                             </div>
                           )}
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
+                     </div>
+                   </div>
+                </div>
+               )}
+             </div>
           ))}
         </div>
 
